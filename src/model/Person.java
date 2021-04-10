@@ -62,7 +62,7 @@ public class Person {
 		}else if(getIdType()==4) {
 			infoPerson+= "\n**  Type ID: CE";
 		}
-
+ 
 		return infoPerson;
 	}
 }
