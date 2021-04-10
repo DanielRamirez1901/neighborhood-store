@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import exceptions.TIException;
 
 public class Store {
 	
@@ -24,4 +23,14 @@ public class Store {
 		}
 		return nPersons;
 	}
+
+	public ArrayList<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(ArrayList<Person> persons) {
+		this.persons = persons;
+	}
+	
+	
 }

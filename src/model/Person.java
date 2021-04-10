@@ -1,5 +1,8 @@
 package model;
 
+import java.time.LocalDate;
+
+import exceptions.PenultimateNumberException;
 import exceptions.TIException;
 
 public class Person {
@@ -18,6 +21,15 @@ public class Person {
 		}
 	}
 
+	public void comprobateID() throws PenultimateNumberException{
+		int number = Integer.parseInt(numberId.charAt(numberId.length()-2)+"");
+		if((number % 2!=0) && (LocalDate.now().getDayOfMonth() % 2 !=0)) {
+			throw new PenultimateNumberException();
+		}else if((number % 2==0) && (LocalDate.now().getDayOfMonth() % 2 ==0)) {
+			throw new PenultimateNumberException();
+		}
+	}
+	
 	public String getNumberId() {
 		return numberId;
 	}

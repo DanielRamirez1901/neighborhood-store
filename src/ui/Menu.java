@@ -1,6 +1,8 @@
 package ui;
 
 import java.util.Scanner;
+
+import exceptions.PenultimateNumberException;
 import exceptions.TIException;
 import model.Person;
 import model.Store;
@@ -8,6 +10,7 @@ import model.Store;
 public class Menu {
 	
 	private final int ADD_PERSON = 1;
+	private final int NUMBERPERSON = 2;
 	private final int EXIT = 3;
 	private Scanner sc = new Scanner(System.in);
 	private Store store;
@@ -20,6 +23,7 @@ public class Menu {
 	public void showMenu() {
 		System.out.println("\nPorfavor elija una opcion a seguir");
 		System.out.println("[1] = Si desea agregar una persona.");
+		System.out.println("[2] = Si desea conocer la cantidad de personas que intentaron ingresar");
 		System.out.println("[3] = Si desea salir del programa");
 	}
 	
@@ -38,18 +42,27 @@ public class Menu {
 				+ "\n[3]PP"
 				+ "\n[4]CE");
 		int idType = sc.nextInt();sc.nextLine();
-		person = new Person(numberId,idType);
-		store.addPerson(person);
 		try {
-		System.out.println("La persona fue agregada exitosamente");
-		}catch(TIException tie)	{
-			System.out.println("La persona al ser menor de edad no puede ingresar");
-			System.err.println(tie.getMessage());
-		}
+			person = new Person(numberId,idType);
+			store.addPerson(person);
+			System.out.println("La persona fue agregada exitosamente");
+			person.comprobateID();
+			person.comprobateTypeID();
+			}catch(TIException tie)	{
+				System.out.println("\nLa persona al ser menor de edad no puede ingresar");
+			    tie.printStackTrace();
+			}catch(PenultimateNumberException pne) {
+				System.out.println("\nLa persona no puede ingresar debido a la normativa del gobierno");
+			    pne.printStackTrace();
+			}
 	}
 
 	public void showInfoPersona() {
 		System.out.print("\n"+store.showPersonInfo()+"\n");
+	}
+	
+	public void showPersonsTry() {
+		System.out.println("El numero de personas que intentaron ingresar son "+ store.getPersons().size());
 	}
 	public static void main(String[] args) {
 		
@@ -59,6 +72,9 @@ public class Menu {
 		switch(option){
 			case ADD_PERSON:
 				addPersonToStore();
+				break;
+			case NUMBERPERSON:
+				showPersonsTry();
 				break;
 			case EXIT:
 				break;
