@@ -1,7 +1,7 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import exceptions.TIException;
 
 public class Store {
 	
@@ -18,7 +18,7 @@ public class Store {
 	public String showPersonInfo() {
 		String nPersons = new String();
 		for(int i = 0; i<persons.size();i++) {
-			if(persons.get(i) != null) {
+			if(persons.get(i) != null && persons.get(i).getIdType()!=1) {
 				nPersons += persons.get(i).showInfo();
 			}
 		}

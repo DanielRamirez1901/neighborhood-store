@@ -1,6 +1,5 @@
 package model;
 
-import exceptions.PenultimateNumberException;
 import exceptions.TIException;
 
 public class Person {
@@ -11,6 +10,12 @@ public class Person {
 	public Person(String numberId, int idT) {
 		this.numberId = numberId;
 		this.idType = idT;
+	}
+	
+	public void comprobateTypeID() throws TIException{
+		if(getIdType()==1) {
+			throw new TIException();
+		}
 	}
 
 	public String getNumberId() {
@@ -48,18 +53,4 @@ public class Person {
 
 		return infoPerson;
 	}
-/*
-	public void setNumberId(String ni) throws PenultimateNumberException{
-		numberId = ni;
-	}
-	
-	public void setIdT(int newIdT) throws TIException{
-		if(newIdT==1) {
-			throw new TIException();
-		}
-		idType = newIdT;
-	}
-*/
-	
-	
 }

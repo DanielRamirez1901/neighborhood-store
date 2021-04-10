@@ -1,9 +1,7 @@
 package ui;
 
 import java.util.Scanner;
-
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_ADDPeer;
-
+import exceptions.TIException;
 import model.Person;
 import model.Store;
 
@@ -11,8 +9,6 @@ public class Menu {
 	
 	private final int ADD_PERSON = 1;
 	private final int EXIT = 3;
-	private final int SHOW = 4;
-
 	private Scanner sc = new Scanner(System.in);
 	private Store store;
 	private Person person;
@@ -25,7 +21,6 @@ public class Menu {
 		System.out.println("\nPorfavor elija una opcion a seguir");
 		System.out.println("[1] = Si desea agregar una persona.");
 		System.out.println("[3] = Si desea salir del programa");
-		System.out.println("[4]");
 	}
 	
 	public int readOption(){
@@ -45,6 +40,12 @@ public class Menu {
 		int idType = sc.nextInt();sc.nextLine();
 		person = new Person(numberId,idType);
 		store.addPerson(person);
+		try {
+		System.out.println("La persona fue agregada exitosamente");
+		}catch(TIException tie)	{
+			System.out.println("La persona al ser menor de edad no puede ingresar");
+			System.err.println(tie.getMessage());
+		}
 	}
 
 	public void showInfoPersona() {
@@ -59,9 +60,6 @@ public class Menu {
 			case ADD_PERSON:
 				addPersonToStore();
 				break;
-			case SHOW:
-			showInfoPersona();
-			break;
 			case EXIT:
 				break;
 		}
@@ -72,30 +70,6 @@ public class Menu {
 			showMenu();
 			opt = readOption();
 			doOperation(opt);
-		}while(opt != 4);//End do while
+		}while(opt != 3);//End do while
 	}//End startProgram
 }
-/*	
-	try{
-			System.out.println("Persona añadida correctamente");
-	}catch(TIException tie) {
-		System.out.println("La persona no puede ingresar porque es menor de edad");
-		System.err.println(tie.getMessage());
-	}
-*/
-/*
-	}
-	
-	public void addPerson() {
-		System.out.println("Ingrese el numero de identidad");
-		String numberID = sc.nextLine();
-		System.out.println("De la siguiente lista ingrese el tipo de documento"
-				+ "[1]TI"
-				+ "[2]CC"
-				+ "[3]PP"
-				+ "[4]CE");
-		int idType = sc.nextInt();sc.nextLine();
-		person = new Person(numberID,idType);
-	}
-*/	
-
