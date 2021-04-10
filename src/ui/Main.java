@@ -5,5 +5,4 @@ public class Main {
 		Menu m = new Menu();
 		m.startProgram();
 	}//End main
-	
-}
+}//End Main Class

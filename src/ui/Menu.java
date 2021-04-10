@@ -8,30 +8,41 @@ import model.Person;
 import model.Store;
 
 public class Menu {
-	
+	//Menu options
 	private final int ADD_PERSON = 1;
 	private final int NUMBERPERSON = 2;
 	private final int EXIT = 3;
+	
 	private Scanner sc = new Scanner(System.in);
+	
+	//Relations
 	private Store store;
 	private Person person;
+	
+//******************************************************************
 
 	public Menu() {
 		store = new Store();
-	}
+	}//End Menu method
 	
+//******************************************************************
+
 	public void showMenu() {
 		System.out.println("\nPorfavor elija una opcion a seguir");
 		System.out.println("[1] = Si desea agregar una persona.");
 		System.out.println("[2] = Si desea conocer la cantidad de personas que intentaron ingresar");
 		System.out.println("[3] = Si desea salir del programa");
-	}
+	}//End showMenu Method
 	
+//******************************************************************
+
 	public int readOption(){
 		int option = sc.nextInt();
 		sc.nextLine();
 		return option;
 	}//End readOption.
+
+//******************************************************************
 
 	public void addPersonToStore() {
 		System.out.println("Ingrese el numero de identidad");
@@ -55,18 +66,21 @@ public class Menu {
 				System.out.println("\nLa persona no puede ingresar debido a la normativa del gobierno");
 			    pne.printStackTrace();
 			}
-	}
+	}//End addPersonToStore method
+
+//******************************************************************
 
 	public void showInfoPersona() {
 		System.out.print("\n"+store.showPersonInfo()+"\n");
-	}
+	}//End shoInfoPersona method
 	
+//******************************************************************
+
 	public void showPersonsTry() {
 		System.out.println("El numero de personas que intentaron ingresar son "+ store.getPersons().size());
-	}
-	public static void main(String[] args) {
-		
-	}
+	}//End showPersonsTry method
+	
+//******************************************************************
 	
 	public void doOperation(int option){
 		switch(option){
@@ -78,8 +92,11 @@ public class Menu {
 				break;
 			case EXIT:
 				break;
-		}
-	}
+		}//End switch
+	}//End doOperation method
+	
+//******************************************************************
+
 	public void startProgram(){
 		int opt = 0;
 		do{
@@ -88,4 +105,4 @@ public class Menu {
 			doOperation(opt);
 		}while(opt != 3);//End do while
 	}//End startProgram
-}
+}//End Menu class

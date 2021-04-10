@@ -6,20 +6,26 @@ import exceptions.PenultimateNumberException;
 import exceptions.TIException;
 
 public class Person {
-	
+	//Attributes
 	private String numberId;
 	private int idType;
-	
+
+//******************************************************************
 	public Person(String numberId, int idT) {
 		this.numberId = numberId;
 		this.idType = idT;
-	}
-	
+	}//End Person method
+
+//******************************************************************
+
 	public void comprobateTypeID() throws TIException{
 		if(getIdType()==1) {
 			throw new TIException();
-		}
-	}
+		}//End if
+	}//End comprobateTypeID method
+
+//******************************************************************
+
 
 	public void comprobateID() throws PenultimateNumberException{
 		int number = Integer.parseInt(numberId.charAt(numberId.length()-2)+"");
@@ -28,8 +34,10 @@ public class Person {
 		}else if((number % 2==0) && (LocalDate.now().getDayOfMonth() % 2 ==0)) {
 			throw new PenultimateNumberException();
 		}
-	}
+	}//End comprobateID method
 	
+//*******************Setters & Getters********************************
+
 	public String getNumberId() {
 		return numberId;
 	}
@@ -46,6 +54,8 @@ public class Person {
 		this.numberId = numberId;
 	}
 	
+//******************************************************************
+
 	public String showInfo() {
 
 		String infoPerson;
@@ -64,5 +74,5 @@ public class Person {
 		}
  
 		return infoPerson;
-	}
-}
+	}//End showInfo method
+}//End Person Class
